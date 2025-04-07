@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Twitter Clone</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar (Gauche) -->
+        <aside class="sidebar">
+            <img src="/images/twitter-logo.png" alt="Twitter Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                    <li><a href="#"><i class="fa fa-hashtag"></i>Explore</a></li>
+                    <li><a href="#"><i class="fa fa-bell"></i>Notifications</a></li>
+                    <li><a href="#"><i class="fa fa-envelope"></i>Messages</a></li>
+                    <li><a href="#"><i class="fa fa-bookmark"></i>Bookmarks</a></li>
+                    <li><a href="#"><i class="fa fa-list"></i>Lists</a></li>
+                    <li><a href="/profile"><i class="fa fa-user"></i>Profile</a></li>
+                    <li><a href="#"><i class="fa fa-ellipsis-h"></i>More</a></li>
+                </ul>
+            </nav>
+            <button class="tweet-button">Tweet</button>
+            <div class="account">
+                <img src="/images/default-avatar.png" alt="Account Avatar">
+                <div>
+                    <strong>Nom d'utilisateur</strong>
+                    <span>@username</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content (Centre) -->
+        <main class="main-content">
+            <section class="tweet-input">
+                <h3>Home</h3>
+                <div class="tweet-input-area">
+                    <img src="/images/default-avatar.png" alt="User Avatar">
+                    <textarea placeholder="What's happening?"></textarea>
+                </div>
+                <div class="tweet-actions">
+                    <!-- Add image/gif/poll/emoji buttons here -->
+                    <button>Tweet</button>
+                </div>
+            </section>
+
+            <section class="tweets-feed">
+                @each(tweet in tweets)
+                <article class="tweet">
+                    <img src="{{ tweet.user.avatar || '/images/default-avatar.png' }}" alt="{{ tweet.user.username }}">
+                    <div class="tweet-content">
+                        <div class="tweet-header">
+                            <h3>{{ tweet.user.username }}</h3>
+                            <small>@{{ tweet.user.username }}</small>
+                            <!-- Add "Verified" icon here -->
+                            <span>• 7m</span>
+                            <!-- Add timestamp here -->
+                        </div>
+                        <p>{{ tweet.content }}</p>
+                        <div class="tweet-actions">
+                            <span><i class="fa fa-comment"></i> {{ tweet.comments_count }}</span>
+                            <span><i class="fa fa-retweet"></i> {{ tweet.retweets_count }}</span>
+                            <span><i class="fa fa-heart"></i> {{ tweet.likes_count }}</span>
+                            <span><i class="fa fa-upload"></i></span>
+                        </div>
+                    </div>
+                </article>
+                @endeach
+            </section>
+        </main>
+
+        <!-- Right Sidebar (Droite) -->
+        <aside class="right-sidebar">
+            <div class="search">
+                <input type="text" placeholder="Search Twitter">
+            </div>
+            <section class="trends">
+                <h3>Trends for you</h3>
+                @each(trend in trends)
+                <div class="trend">
+                    #{{ trend.name }} - {{ trend.tweet_count }} Tweets
+                </div>
+                @endeach
+            </section>
+            <section class="suggestions">
+                <h3>Who to follow</h3>
+                @each(suggestion in suggestions)
+                <div class="suggestion">
+                    <img src="{{ suggestion.avatar || '/images/default-avatar.png' }}" alt="{{ suggestion.username }}">
+                    <div>
+                        <strong>{{ suggestion.username }}</strong>
+                        <span>@{{ suggestion.username }}</span>
+                    </div>
+                    <button>Follow</button>
+                </div>
+                @endeach
+                <a href="#">Show more</a>
+            </section>
+            <footer>
+              <a href="#">Terms of Service</a>
+              <a href="#">Privacy Policy</a>
+              <a href="#">Cookie Policy</a>
+              <a href="#">Imprint</a>
+              <a href="#">Ads info</a>
+              <a href="#">More...</a>
+              <p>© 2021 Twitter, Inc.</p>
+            </footer>
+        </aside>
+    </div>
+</body>
+
+</html>

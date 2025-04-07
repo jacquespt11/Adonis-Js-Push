@@ -1,0 +1,44 @@
+<!-- resources/views/profile.edge -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil - X</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1>X</h1>
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/profile/AdonisJS">Profil</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="profile">
+      <img src="{{ profile.avatar }}" alt="{{ profile.username }}">
+      <h2>{{ profile.username }} <small>{{ profile.handle }}</small></h2>
+      <p>{{ profile.bio }}</p>
+    </section>
+
+    <section class="tweets">
+      <h2>Tweets de {{ profile.username }}</h2>
+      @each(tweet in tweets)
+        <div class="tweet">
+          <img src="{{ tweet.avatar }}" alt="{{ tweet.username }}">
+          <div class="tweet-content">
+            <h3>{{ tweet.username }} <small>{{ tweet.handle }}</small></h3>
+            <p>{{ tweet.content }}</p>
+          </div>
+        </div>
+      @endeach
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 X Clone</p>
+  </footer>
+</body>
+</html>
